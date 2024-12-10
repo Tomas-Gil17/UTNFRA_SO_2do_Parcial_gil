@@ -67,5 +67,13 @@ sudo mount /dev/mapper/vg_datos-lv_docker /var/lib/docker
 
 sudo systemctl restart docker
 
+vgdisplay vg_datos
+
+echo "Expandiendo LV_DOCKER"
+
+sudo lvextend -L +500M /dev/mapper/vg_datos-lv_docker
+
+sudo resize2fs /dev/mapper/vg_datos-lv_docker
+
 df -h
 lsblk
